@@ -9,7 +9,7 @@ test:
   stage: test
   before_script:
     - apk add --no-cache python3
-    - pip3 install -r requirements.txt
+    - python3 install -r requirements.txt
   script:
     - python -m unittest test.py
 

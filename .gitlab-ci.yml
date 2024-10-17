@@ -12,7 +12,6 @@ test:
   script:
     - python -m unittest test.py
 
-
 # Job deploy
 deploy:
   stage: deploy

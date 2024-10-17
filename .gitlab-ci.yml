@@ -1,4 +1,4 @@
-image: python
+image: alpine
 
 stages:
   - test
@@ -8,6 +8,7 @@ stages:
 test:
   stage: test
   before_script:
+    - apk add --no-cache python3
     - pip3 install -r requirements.txt
   script:
     - python -m unittest test.py
@@ -15,6 +16,14 @@ test:
 # Job deploy
 deploy:
   stage: deploy
+  before_script:
+    - apk add --no-cache curl
+    # Télécharger et installer flyctl
+    - curl -L https://fly.io/install.sh | sh
+    # Ajouter flyctl au chemin
+    - export FLYCTL_INSTALL="$HOME/.fly"
+    - export PATH="$FLYCTL_INSTALL/bin:$PATH"
+    - flyctl version
   script:
     - echo "Deploy"
   needs: ["test"]

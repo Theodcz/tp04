@@ -21,7 +21,7 @@ deploy:
 
   script:
     - export FLY_API_TOKEN = $FLY_API_TOKEN
-    - /root/.fly/bin/flyctl auth login -t --access-token $FLY_API_TOKEN
+    # - /root/.fly/bin/flyctl auth login -t --access-token $FLY_API_TOKEN
     - /root/.fly/bin/flyctl deploy
   only:
     - develop

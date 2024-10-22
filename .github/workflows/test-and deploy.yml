@@ -1,0 +1,25 @@
+name: test and deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout source code #pour récupérer le code source
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: install python packages
+        run: pip install -r requirements.txt
+
+      - name: execute script
+        run: python -m unittest test.py
